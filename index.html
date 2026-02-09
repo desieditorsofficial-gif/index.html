@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IQ Test Website</title>
+<style>
+body {
+font-family: Arial;
+background: linear-gradient(to right,#667eea,#764ba2);
+color:white;
+text-align:center;
+padding:20px;
+}
+.box {
+background:white;
+color:black;
+padding:20px;
+border-radius:10px;
+max-width:500px;
+margin:auto;
+}
+button {
+padding:10px 20px;
+margin:10px;
+border:none;
+border-radius:5px;
+background:#667eea;
+color:white;
+font-size:16px;
+}
+input,select {
+padding:8px;
+margin:5px;
+width:80%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🧠 Free IQ Test</h1>
+
+<div class="box" id="quiz">
+<p>Q1: 2 + 2 = ?</p>
+<select id="q1">
+<option value="0">Select</option>
+<option value="4">4</option>
+<option value="5">5</option>
+</select>
+
+<p>Q2: 5 × 2 = ?</p>
+<select id="q2">
+<option value="0">Select</option>
+<option value="10">10</option>
+<option value="12">12</option>
+</select>
+
+<p>Q3: Sun rises in?</p>
+<select id="q3">
+<option value="0">Select</option>
+<option value="East">East</option>
+<option value="West">West</option>
+</select>
+
+<br><br>
+<button onclick="submitTest()">Submit IQ Test</button>
+</div>
+
+<div class="box" id="result" style="display:none;"></div>
+
+<div class="box" id="certificateBox" style="display:none;">
+<h2>Do you want Certificate?</h2>
+<button onclick="showForm()">Yes</button>
+<button onclick="noCert()">No</button>
+</div>
+
+<div class="box" id="formBox" style="display:none;">
+<input id="name" placeholder="Enter your name"><br>
+<input id="age" placeholder="Enter your age"><br>
+<button onclick="generateCert()">Generate Certificate</button>
+</div>
+
+<div class="box" id="certificate" style="display:none;"></div>
+
+<div class="box" id="feedback" style="display:none;">
+<h3>Give us Feedback</h3>
+<textarea id="review" placeholder="How was this website?"></textarea><br>
+<select id="rating">
+<option>⭐</option>
+<option>⭐⭐</option>
+<option>⭐⭐⭐</option>
+<option>⭐⭐⭐⭐</option>
+<option>⭐⭐⭐⭐⭐</option>
+</select><br>
+<button onclick="thankyou()">Submit Feedback</button>
+</div>
+
+<script>
+function submitTest(){
+let score=0;
+if(q1.value=="4") score++;
+if(q2.value=="10") score++;
+if(q3.value=="East") score++;
+
+document.getElementById("quiz").style.display="none";
+document.getElementById("result").style.display="block";
+document.getElementById("result").innerHTML="<h2>Your IQ Score: "+(score*30)+"</h2>";
+document.getElementById("certificateBox").style.display="block";
+}
+
+function showForm(){
+document.getElementById("certificateBox").style.display="none";
+document.getElementById("formBox").style.display="block";
+}
+
+function noCert(){
+document.getElementById("certificateBox").style.display="none";
+document.getElementById("feedback").style.display="block";
+}
+
+function generateCert(){
+let name=document.getElementById("name").value;
+let age=document.getElementById("age").value;
+
+document.getElementById("formBox").style.display="none";
+document.getElementById("certificate").style.display="block";
+
+document.getElementById("certificate").innerHTML=
+"<h2>🎓 Certificate of Intelligence</h2>"+
+"<p>This certifies that <b>"+name+"</b> (Age "+age+") has successfully completed IQ Test.</p>"+
+"<p>Issued by World Top AI System</p>";
+
+document.getElementById("feedback").style.display="block";
+}
+
+function thankyou(){
+alert("Thank you for your feedback!");
+}
+</script>
+
+</body>
+</html>
